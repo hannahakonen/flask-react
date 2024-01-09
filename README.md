@@ -1,6 +1,10 @@
-# Combining React app with Flask
+# Combining React App with Flask
 
-https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
+Based on https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
+
+# Drawing a Graph 
+
+Hints from https://stackoverflow.com/questions/72930513/how-to-plot-plotly-chart-on-react-from-json-response-from-flask-api
 
 # Getting Started with Create React App
 
