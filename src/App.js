@@ -25,6 +25,13 @@ function App() {
     });
   }, []);
 
+  const [plot3, setPlot3] = useState({});
+  useEffect(() => {
+    fetch('http://localhost:5000/plot3').then(res => res.json()).then(data => {
+      setPlot3(data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -43,6 +50,7 @@ function App() {
         <p>The current time is {currentTime}.</p>
         {plot1.data && plot1.layout ? <Plot data={plot1.data} layout={plot1.layout}/> : null}
         {plot2.data && plot2.layout ? <Plot data={plot2.data} layout={plot2.layout}/> : null}
+        {plot3.data && plot3.layout ? <Plot data={plot3.data} layout={plot3.layout}/> : null}
       </header>
     </div>
   );
