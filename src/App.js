@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js'
 import logo from './logo.svg';
 import './App.css';
+import TitleInput from './components/TitleInput'; 
+import PeakVisibility from './components/PeakVisibility';
+import WidthSlider from './components/WidthSlider';
 import Footer from './components/Footer';
 
 function App() {
@@ -10,20 +13,6 @@ function App() {
   const [title, setTitle] = useState('Raman Spectrum'); 
   const [inputValue, setInputValue] = useState(''); 
   const [sliderValue, setSliderValue] = useState(20);
-
-  /*
-  useEffect(() => {
-    fetch(`http://localhost:5000/plot?sliderValue=${sliderValue}`).then(res => res.json()).then(data => {
-    // set visibility of plots based on checkbox
-    data.data.forEach((plot) => {
-      if (plot.name.startsWith('stemTrace')) {
-        plot.visible = showStemTraces;
-      }
-    });  
-    setPlot(data);
-    });
-  }, [showStemTraces, sliderValue]);
-  */
 
   useEffect(() => {
     fetch(`http://localhost:5000/plot?sliderValue=${sliderValue}`).then(res => res.json()).then(data => {
@@ -55,41 +44,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
         <p>Raman Spectrum Simulator</p>
 
         {plot.data && plot.layout ? <Plot data={plot.data} layout={{...plot.layout, title: title}}/> : null}
-  
-        <form onSubmit={handleSubmit}>
-        <label htmlFor="title-input" style={{fontSize: '14px'}}>Title </label>
-          <input
-            id="title-input"
-            type="text"
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-          />
-          <button type="submit">Change</button>
-        </form>
 
-        <label style={{fontSize: '14px'}}>
-          Peaks
-          <input
-            type="checkbox"
-            checked={showStemTraces}
-            onChange={(e) => setShowStemTraces(e.target.checked)}
-          />
-        </label>
+        <TitleInput inputValue={inputValue} setInputValue={setInputValue} handleSubmit={handleSubmit} />
 
-        <label style={{fontSize: '14px'}}>Width        
-          <input
-            type="range"
-            min="1"
-            max="70"
-            step="1"
-            value={sliderValue}
-            onChange={(e) => setSliderValue(e.target.value)}
-          />
-        </label>
-        {sliderValue}
+        <PeakVisibility showStemTraces={showStemTraces} setShowStemTraces={setShowStemTraces} />
+
+        <WidthSlider sliderValue={sliderValue} setSliderValue={setSliderValue} />
+
       </header>
       <Footer />
     </div>
