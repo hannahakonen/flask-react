@@ -1,5 +1,5 @@
 import time
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 import pandas as pd
 import plotly
@@ -86,12 +86,12 @@ def draw_simulated_plot(frequencies, intensities, fwhm):
     simulated_plot = go.Scatter(x=x, y=sum_y, mode="lines", line=dict(color="rgb(114, 98, 130)"), name="simulated plot", hoverinfo="x+y")
     return simulated_plot
 
-@app.route("/plot3")
-def draw_plot3():
+@app.route("/plot")
+def draw_plot():
     frequencies = [10, 15, 46, 51, 54, 73, 76, 94, 100, 127, 130, 133, 160, 163]
     intensities = [20, 60, 4, 40, 26, 64, 120, 12, 60, 4, 40, 26, 64, 120]
     filename = 'Raman Spectrum'
-    fwhm = float(20)
+    fwhm = float(request.args.get('sliderValue', default=20, type=int))
       # x=X, ymax=Y, fx=1, ca. 0.94
 
     fig = go.Figure(layout=go.Layout(
