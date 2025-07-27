@@ -1,6 +1,6 @@
 # Web page implementation for the programming-project-work project
 
-Changing the PyQT5 UI in [the programming-project-work](https://github.com/hannahakonen/programming-project-work/tree/master) to web pages using Python, Flask, SQL, HTML, CSS and Javascript.
+Changing the PyQT5 UI in [the programming-project-work](https://github.com/hannahakonen/programming-project-work/tree/master) to web pages using Python, Flask, React, SQL, HTML and CSS.
 
 # Combining React App with Flask
 
